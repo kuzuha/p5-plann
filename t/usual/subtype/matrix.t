@@ -6,8 +6,8 @@ use Plann::Subtypes;
 
 my $anon_class = Mouse::Meta::Class->create_anon_class;
 $anon_class->add_attribute(matrix => (
-    is => 'rw',
-    isa => 'Matrix',
+    is     => 'rw',
+    isa    => 'Matrix',
     coerce => 1,
 ));
 

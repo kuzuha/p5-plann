@@ -39,9 +39,9 @@ C<< $lsh->matrix() >>: L<Math::MatrixReal>
 =cut
 
 has 'matrix' => (
-    is => 'ro',
-    isa => 'Matrix',
-    coerce => 1,
+    is       => 'ro',
+    isa      => 'Matrix',
+    coerce   => 1,
     required => 1,
 );
 
@@ -67,7 +67,7 @@ The matrix. Column dimension must be equal to random matrix's row dimension.
 
 sub hash {
     args_pos my $self,
-             my $matrix => {isa => 'Matrix', coerce => 1};
+             my $matrix => { isa => 'Matrix', coerce => 1 };
 
     ($matrix * $self->matrix)->each(sub{ $_[0] > 0 ? 1 : 0 });
 }
@@ -98,8 +98,8 @@ The column dimension.
 
 sub random_matrix {
     args_pos my $class => 'ClassName', 
-             my $rows => 'Int',
-             my $cols => 'Int';
+             my $rows  => 'Int',
+             my $cols  => 'Int';
 
     my $matrix = [];
     for my $i (0..$rows-1) {
