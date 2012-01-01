@@ -1,15 +1,18 @@
 use 5.14.0;
 use Test::Most tests => 3;
+use Mouse::Meta::Attribute;
 use Mouse::Meta::Class;
 use Math::MatrixReal;
 use Plann::Subtypes;
 
 my $anon_class = Mouse::Meta::Class->create_anon_class;
-$anon_class->add_attribute(matrix => (
-    is     => 'rw',
-    isa    => 'Matrix',
-    coerce => 1,
-));
+$anon_class->add_attribute(
+    matrix => (
+        is     => 'rw',
+        isa    => 'Matrix',
+        coerce => 1,
+    ),
+);
 
 my $anon = $anon_class->new_object;
 

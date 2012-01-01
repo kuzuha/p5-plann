@@ -2,7 +2,7 @@ use 5.14.0;
 package Plann::Subtypes;
 use true;
 
-use Any::Moose '::Util::TypeConstraints';
+use Mouse::Util::TypeConstraints;
 use Math::MatrixReal;
 
 =head1 Subtypes
