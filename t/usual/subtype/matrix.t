@@ -1,5 +1,6 @@
 use 5.14.0;
 use Test::Most tests => 3;
+
 use Mouse::Meta::Attribute;
 use Mouse::Meta::Class;
 use Math::MatrixReal;

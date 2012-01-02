@@ -1,5 +1,6 @@
 use 5.14.0;
 use Test::Most tests => 8;
+
 use Plann::Hash::LSH;
 
 #
