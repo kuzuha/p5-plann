@@ -21,7 +21,7 @@ use Math::Trig qw( pi );
 
 Create a new Plann::HASH::LSH object with random matrix.
 
-C<< Plann::Hash::LSH->new(matrix => $random_matrix) :Plann::Hash::LSH >>
+C<< Plann::Hash::LSH->new($random_matrix) :Plann::Hash::LSH >>
 
 =head4 Parameters
 
@@ -110,4 +110,8 @@ sub random_matrix {
 
 sub _random_normal {
     sqrt(-2.0*log(rand()))*cos(2*pi*rand());
+}
+
+sub BUILDARGS {
+    { matrix => $_[1] };
 }

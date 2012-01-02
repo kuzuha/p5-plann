@@ -14,7 +14,7 @@ is($matrix->[2], 10);
 #
 # constructors and accessors
 #
-my $lsh = Plann::Hash::LSH->new(matrix => $matrix);
+my $lsh = Plann::Hash::LSH->new($matrix);
 is($lsh->matrix, $matrix);
 
 #
