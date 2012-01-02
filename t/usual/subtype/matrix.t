@@ -18,11 +18,11 @@ $anon_class->add_attribute(
 my $anon = $anon_class->new_object;
 
 $anon->matrix([1,2,3]);
-is(Math::MatrixReal->new_from_rows([[1,2,3]]), $anon->matrix);
+is($anon->matrix, Math::MatrixReal->new_from_rows([[1,2,3]]));
 
 $anon->matrix([[1,2], [3,4]]);
-is(Math::MatrixReal->new_from_rows([[1,2], [3,4]]), $anon->matrix);
+is($anon->matrix, Math::MatrixReal->new_from_rows([[1,2], [3,4]]));
 
 my $matrix = Math::MatrixReal->new_from_rows([[1,1,1], [2,2,2]]);
 $anon->matrix($matrix);
-is($matrix, $anon->matrix);
+is($anon->matrix, $matrix);

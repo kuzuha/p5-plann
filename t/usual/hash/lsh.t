@@ -6,23 +6,23 @@ use Plann::Hash::LSH;
 #
 # random_matrix
 #
-my $matrix = Plann::Hash::LSH->random_matrix(10, 5);
+my $matrix = Plann::Hash::LSH->random_matrix(20, 10);
 isa_ok($matrix, 'Math::MatrixReal');
-is(10, $matrix->[1]);
-is(5, $matrix->[2]);
+is($matrix->[1], 20);
+is($matrix->[2], 10);
 
 #
 # constructors and accessors
 #
 my $lsh = Plann::Hash::LSH->new(matrix => $matrix);
-is($matrix, $lsh->matrix);
+is($lsh->matrix, $matrix);
 
 #
 # hash
 #
-my $hash = $lsh->hash([1,2,3,4,5,6,7,8,9,10]);
+my $hash = $lsh->hash([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]);
 
 isa_ok($hash, 'Math::MatrixReal');
 ok($hash->is_row_vector());
-is(5, $matrix->[2]);
+is($matrix->[2], 10);
 ok($hash->is_binary);
