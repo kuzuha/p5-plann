@@ -50,6 +50,21 @@ sub search {
     my ($matrix, $options) = @_;
 
     my $res = [];
+    if ($matrix->is_row_vector) {
+        $res = $self->_search_one($matrix, $options);
+    } else {
+        for my $i (1..$matrix->dimension_rows) {
+            push $res, $self->_search_one($matrix->row($i));
+        }
+    }
+    $res;
+}
+
+sub _search_one {
+    my $self = shift;
+    my ($matrix, $options) = @_;
+
+    my $res = [];
     for my $entry (values $self->entries) {
         my $distance = euclidean_distance($entry->vector->array_ref, $matrix->array_ref);
 

@@ -1,8 +1,9 @@
 use 5.14.0;
-use Test::Most tests => 4;
+use Test::Most tests => 5;
 
 use Plann::ANN::BruteForce;
 use Plann::ANN::Entry;
+use Plann::Matrix;
 
 my $ann = Plann::ANN::BruteForce->new;
 
@@ -21,11 +22,30 @@ my $expected = [
 $ann->train($_) for @entries;
 
 #
-# search
+# search one
 #
 is_deeply(
     $ann->search($entries[1]->vector),
     $expected
+);
+
+#
+# search multi
+#
+is_deeply(
+    $ann->search(Plann::Matrix->new_from_rows([[1,2,3],[2,3,4]])),
+    [
+        [
+            { entry => $entries[0], distance => 0 },
+            { entry => $entries[1], distance => 1.73205080756888 },
+            { entry => $entries[2], distance => 370.42408129062 },
+        ],
+        [
+            { entry => $entries[1], distance => 0 },
+            { entry => $entries[0], distance => 1.73205080756888 },
+            { entry => $entries[2], distance => 368.821094841388 },
+        ],
+    ]
 );
 
 #
