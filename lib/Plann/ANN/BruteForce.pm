@@ -22,10 +22,10 @@ Create a new Plann::ANN::BruteForce object.
 =cut
 
 has 'entries' => (
-    traits   => ['Array'],
-    is       => 'ro',
-    isa      => 'ArrayRef[Plann::ANN::Entry]',
-    default  => sub { [] },
+    traits  => ['Array'],
+    is      => 'ro',
+    isa     => 'ArrayRef[Plann::ANN::Entry]',
+    default => sub { [] },
     handles => { _train => 'push' },
 );
 
