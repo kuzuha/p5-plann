@@ -51,7 +51,7 @@ sub search {
 
     my $res = [];
     for my $entry (values $self->entries) {
-        my $distance = euclidean_distance(map {$_->[0]->[0]} $entry->vector, $matrix);
+        my $distance = euclidean_distance($entry->vector->array_ref, $matrix->array_ref);
 
         next if $options->{threshold} && $distance > $options->{threshold};
         push $res, {

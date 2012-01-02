@@ -4,8 +4,13 @@ use true;
 use Mouse;
 use Smart::Args;
 
+use Sub::Exporter -setup => {
+    exports => [ qw/random_matrix/ ],
+    groups  => { default => [ qw/random_matrix/ ] },
+};
+
 use Plann::Subtypes;
-use Math::MatrixReal;
+use Plann::Matrix;
 use Math::Trig qw( pi );
 
 =head1 Interface
@@ -34,7 +39,7 @@ The matrix that initialized by the normal distribution.
 
 Get matrix that constructed.
 
-C<< $lsh->matrix() >>: L<Math::MatrixReal>
+C<< $lsh->matrix() >>: L<Plann::Matrix>
 
 =cut
 
@@ -51,7 +56,7 @@ has 'matrix' => (
 
 Generate a hash matrix using Locality-Sensitive Hashing algorithm.
 
-C<< $lsh->hash($matrix) >> :L<Math::MtrixReal>
+C<< $lsh->hash($matrix) >> :L<Plann::Mtrix>
 
 =head4 Parameters
 
@@ -72,13 +77,13 @@ sub hash {
     ($matrix * $self->matrix)->each(sub{ $_[0] > 0 ? 1 : 0 });
 }
 
-=head2 Class Methods
+=head2 Functions
 
 =head3 random_matrix
 
 Generate a new matrix that initialized by the normal distribution.
 
-C<< Plann::Hash::LSH->random_matrix($rows, $cols) >>: L<Math::MatrixReal>
+C<random_matrix($rows, $cols)>: L<Plann::Matrix>
 
 =head4 Parameters
 
@@ -97,18 +102,10 @@ The column dimension.
 =cut
 
 sub random_matrix {
-    args_pos my $class => 'ClassName', 
-             my $rows  => 'Int',
+    args_pos my $rows  => 'Int',
              my $cols  => 'Int';
 
-    my $matrix = [];
-    for my $i (0..$rows-1) {
-        push $matrix, [];
-        for my $j (0..$cols-1) {
-            $matrix->[$i]->[$j] = _random_normal();
-        }
-    }
-    Math::MatrixReal->new_from_rows($matrix);
+    Plann::Matrix->new($rows, $cols)->each(sub { _random_normal() });
 }
 
 sub _random_normal {
